@@ -1,1 +1,1 @@
-IB
+IB Comp Sci
