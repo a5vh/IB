@@ -7,12 +7,14 @@ import java.util.LinkedList;
 //program auto generates a certain number of numbers that the user wants generated
 //https://coderanch.com/t/339129/java/convert-getText-int <- this is how to convert getText to int
 //need to develop the pattern algorithm
+
 public class NumGUI extends JFrame {
 
     JLabel numToStartLabel = new JLabel("Number to Start: ");
     JTextField numToStart = new JTextField(5);
     JLabel patternLabel = new JLabel("Pattern of +: ");
     JTextField pattern = new JTextField(5);
+
 
     JButton startPattern = new JButton("Start Pattern");
     JButton exitButton = new JButton("Exit");
@@ -38,11 +40,17 @@ public class NumGUI extends JFrame {
         gridPanel.add(flow2Panel);
 
         add(gridPanel);
+
+        startPattern.addActionListener(event -> startPattern());
     }
 
     public void startPattern()
     {
-        numLinkedList.add(new Num(numToStart.getTex))
+        int num = Integer.parseInt(numToStart.getText());
+
+        int patt = Integer.parseInt(pattern.getText());
+
+        numLinkedList.add(new Num(num + patt));
     }
 
     public static void main(String [] args)
