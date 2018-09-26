@@ -1,7 +1,6 @@
 package LinkedList;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.util.LinkedList;
 
@@ -56,6 +55,7 @@ public class WebsiteGUI extends JFrame {
         displayAllButton.addActionListener(event -> displayAll());
         deleteButton.addActionListener(event -> delteWebsite());
         exitButton.addActionListener(event -> exitApplication());
+        getButton.addActionListener(event -> get());
     }
 
     private boolean isWebsiteInList(String siteName) {
@@ -124,10 +124,27 @@ public class WebsiteGUI extends JFrame {
         }
     }
 
-    //private Website get(int index)
-    //{
-
-    //}
+    public void get()
+    {
+        if (isWebsiteInList(siteName.getText()) == false)
+        {
+            JOptionPane.showMessageDialog(null, "Error: Website is not in the database.");
+        }
+        else {
+            for (int s = 0; s < websiteLinkedList.size(); s++)
+            {
+                String currSite = websiteLinkedList.get(s).getSiteName();
+                if (currSite.compareToIgnoreCase(siteName.getText()) == 0) {
+                    String message = "Website Name: " + siteName.getText() + "\n" +
+                            "Username" + username.getText() + "Password" + password.getText();
+                    JOptionPane.showMessageDialog(null, message);
+                    System.out.print("Website Name: " + websiteLinkedList.get(s).getSiteName());
+                    System.out.println("Username: " + websiteLinkedList.get(s).getUserName());
+                    System.out.println("Password: " + websiteLinkedList.get(s).getPassword());
+                }
+            }
+        }
+    }
 
     public static void main (String[] args)
     {
