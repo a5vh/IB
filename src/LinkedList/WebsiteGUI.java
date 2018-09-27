@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.io.*;
 
-
+//JTable implement
 public class WebsiteGUI extends JFrame {
 
     JTextArea websiteTextArea = new JTextArea();
@@ -63,6 +63,10 @@ public class WebsiteGUI extends JFrame {
         deleteButton.addActionListener(event -> deleteWebsite());
         exitButton.addActionListener(event -> exitApplication());
         getButton.addActionListener(event -> get());
+
+        this.setTitle("Password Holder");
+
+        websiteTextArea.setText("Sitename\tUsername\tPassword");
 
     }
 
@@ -155,7 +159,7 @@ public class WebsiteGUI extends JFrame {
         File file = new File("B:/Documents/Documents/Programming/IB/src/LinkedList/password.txt");
 
         FileWriter fw = new FileWriter(file);
-        fw.write("gay");
+        fw.write("wow");
 
     }
 
@@ -163,8 +167,6 @@ public class WebsiteGUI extends JFrame {
     public static void main (String[] args)
     {
         WebsiteGUI app = new WebsiteGUI();
-
-
 
         app.setVisible(true);
         app.setSize(550, 200);
