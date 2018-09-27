@@ -53,7 +53,7 @@ public class Website {
 
     public String toString()
     {
-        return siteName + WEB + "\t" + userName + "\t" + password;
+        return " " + siteName + "\t\t" + userName + "\t\t" + password;
     }
 
 

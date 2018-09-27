@@ -2,7 +2,11 @@ package LinkedList;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.LinkedList;
+import java.io.*;
+
 
 public class WebsiteGUI extends JFrame {
 
@@ -20,11 +24,13 @@ public class WebsiteGUI extends JFrame {
     JButton getButton = new JButton("Get Credentials");
     JButton displayAllButton = new JButton("DisplayAll");
     JButton exitButton = new JButton("Exit");
+    JButton printButton = new JButton("Pirnt To .txt");
 
-    private LinkedList<Website> websiteLinkedList = new LinkedList<Website>();
+    public LinkedList<Website> websiteLinkedList = new LinkedList<Website>();
 
     public WebsiteGUI()
     {
+        JFrame jframe = new JFrame("Password Holder");
         JPanel flow1panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel flow2panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
@@ -44,6 +50,7 @@ public class WebsiteGUI extends JFrame {
         flow2panel.add(getButton);
         flow2panel.add(displayAllButton);
         flow2panel.add(exitButton);
+        flow2panel.add(printButton);
 
         gridPanel.add(flow1panel);
         gridPanel.add(flow2panel);
@@ -53,9 +60,10 @@ public class WebsiteGUI extends JFrame {
 
         addButton.addActionListener(event -> addWebsite());
         displayAllButton.addActionListener(event -> displayAll());
-        deleteButton.addActionListener(event -> delteWebsite());
+        deleteButton.addActionListener(event -> deleteWebsite());
         exitButton.addActionListener(event -> exitApplication());
         getButton.addActionListener(event -> get());
+
     }
 
     private boolean isWebsiteInList(String siteName) {
@@ -79,9 +87,9 @@ public class WebsiteGUI extends JFrame {
         } else {
             websiteLinkedList.add(new Website(siteName.getText(), username.getText(),
                     password.getText()));
-            siteName.setText(" ");
-            username.setText(" ");
-            password.setText(" ");
+            siteName.setText("");
+            username.setText("");
+            password.setText("");
 
        }
         displayAll();
@@ -92,7 +100,7 @@ public class WebsiteGUI extends JFrame {
         websiteTextArea.setText(" ");
 
         for (Website web : websiteLinkedList) {
-            websiteTextArea.append(web + "\n");
+            websiteTextArea.append(web.getSiteName() + "\t" + web.getUserName() + "\t" + "*********" + "\n");
         }
     }
 
@@ -101,7 +109,7 @@ public class WebsiteGUI extends JFrame {
         System.exit(0);
     }
 
-    public void delteWebsite() {
+    public void deleteWebsite() {
 
         if (websiteLinkedList.size() == 0) {
             JOptionPane.showMessageDialog(null, "Error: database is empty.");
@@ -118,9 +126,9 @@ public class WebsiteGUI extends JFrame {
                 }
             }
             displayAll();
-            siteName.setText(" ");
-            username.setText(" ");
-            password.setText(" ");
+            siteName.setText("");
+            username.setText("");
+            password.setText("");
         }
     }
 
@@ -135,22 +143,31 @@ public class WebsiteGUI extends JFrame {
             {
                 String currSite = websiteLinkedList.get(s).getSiteName();
                 if (currSite.compareToIgnoreCase(siteName.getText()) == 0) {
-                    String message = "Website Name: " + siteName.getText() + "\n" +
-                            "Username" + username.getText() + "Password" + password.getText();
+                    String message = "Website Name: " + websiteLinkedList.get(s).getSiteName() + ".com" + "\n" +
+                            "Username: " + websiteLinkedList.get(s).getUserName() + "\n" + "Password: " + websiteLinkedList.get(s).getPassword();
                     JOptionPane.showMessageDialog(null, message);
-                    System.out.print("Website Name: " + websiteLinkedList.get(s).getSiteName());
-                    System.out.println("Username: " + websiteLinkedList.get(s).getUserName());
-                    System.out.println("Password: " + websiteLinkedList.get(s).getPassword());
                 }
             }
         }
     }
 
+    public void print() throws IOException{
+        File file = new File("B:/Documents/Documents/Programming/IB/src/LinkedList/password.txt");
+
+        FileWriter fw = new FileWriter(file);
+        fw.write("gay");
+
+    }
+
+
     public static void main (String[] args)
     {
         WebsiteGUI app = new WebsiteGUI();
+
+
+
         app.setVisible(true);
-        app.setSize(550, 500);
+        app.setSize(550, 200);
         app.setLocation(200,100);
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
