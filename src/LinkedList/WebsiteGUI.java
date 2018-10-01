@@ -33,9 +33,8 @@ public class WebsiteGUI extends JFrame {
         JFrame jframe = new JFrame("Password Holder");
         JPanel flow1panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel flow2panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JPanel flow3panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        createTable();
+        websiteTextArea.setEditable(false);
 
         JPanel gridPanel = new JPanel(new GridLayout(2, 1));
 
@@ -67,6 +66,8 @@ public class WebsiteGUI extends JFrame {
 
         this.setTitle("Password Holder");
 
+        websiteTextArea.setText("Sitename\tUsername\tPassword");
+
     }
 
     private boolean isWebsiteInList(String siteName) {
@@ -79,14 +80,6 @@ public class WebsiteGUI extends JFrame {
         }
         return inList;
 
-    }
-
-    public void createTable()
-    {
-        String[] columnNames = {"Sitename", "Username", "Password"};
-        Website[] data =  
-
-        JTable table = new JTable(data, columnNames);
     }
 
 
