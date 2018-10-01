@@ -80,11 +80,13 @@ public class WebsiteGUI extends JFrame {
         return inList;
 
     }
+    
 
     public void createTable()
     {
         String[] columnNames = {"Sitename", "Username", "Password"};
-        Website[] data =  
+        Website[] data =
+
 
         JTable table = new JTable(data, columnNames);
     }
