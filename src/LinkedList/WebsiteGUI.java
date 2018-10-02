@@ -1,9 +1,11 @@
 package LinkedList;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.io.*;
 
@@ -35,8 +37,6 @@ public class WebsiteGUI extends JFrame {
         JPanel flow2panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel flow3panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        createTable();
-
         JPanel gridPanel = new JPanel(new GridLayout(2, 1));
 
         flow1panel.add(siteLabel);
@@ -56,7 +56,7 @@ public class WebsiteGUI extends JFrame {
         gridPanel.add(flow1panel);
         gridPanel.add(flow2panel);
 
-        add(websiteTextArea, BorderLayout.CENTER);
+
         add(gridPanel, BorderLayout.SOUTH);
 
         addButton.addActionListener(event -> addWebsite());
@@ -66,6 +66,8 @@ public class WebsiteGUI extends JFrame {
         getButton.addActionListener(event -> get());
 
         this.setTitle("Password Holder");
+
+        displayAll();
 
     }
 
@@ -80,16 +82,7 @@ public class WebsiteGUI extends JFrame {
         return inList;
 
     }
-    
 
-    public void createTable()
-    {
-        String[] columnNames = {"Sitename", "Username", "Password"};
-        Website[] data =
-
-
-        JTable table = new JTable(data, columnNames);
-    }
 
 
     public void addWebsite()
@@ -108,13 +101,36 @@ public class WebsiteGUI extends JFrame {
         displayAll();
     }
 
-    private void displayAll()
+    public void displayAll()
     {
+        String[] columnNames = {"Sitename", "Username", "Password"};
+
+        DefaultTableModel model = new DefaultTableModel(columnNames, 10);
+        JTable table = new JTable(model);
         websiteTextArea.setText(" ");
 
+        ArrayList<String> sitenames = new ArrayList<>();
+        ArrayList<String> usernames = new ArrayList<>();
+        ArrayList<String> passwords = new ArrayList<>();
+
+
         for (Website web : websiteLinkedList) {
-            websiteTextArea.append(web.getSiteName() + "\t" + web.getUserName() + "\t" + "*********" + "\n");
+            for (int i = 0; i < websiteLinkedList.size(); i++)
+            {
+                sitenames.add(i, web.getSiteName());
+                usernames.add(i, web.getUserName());
+                passwords.add(i, web.getPassword());
+            }
         }
+
+        model.addRow(columnNames);
+
+        for (int i = 0; i < sitenames.size(); i++) {
+            Object[] row = {sitenames.get(i), usernames.get(i), passwords.get(i)};
+            model.addRow(row);
+        }
+
+        add(table, BorderLayout.NORTH);
     }
 
     private void exitApplication()
