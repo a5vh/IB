@@ -63,6 +63,7 @@ public class WebsiteGUI extends JFrame {
         deleteButton.addActionListener(event -> deleteWebsite());
         exitButton.addActionListener(event -> exitApplication());
         getButton.addActionListener(event -> get());
+        printButton.addActionListener(event -> print());
 
         displayAll();
 
@@ -178,11 +179,18 @@ public class WebsiteGUI extends JFrame {
         }
     }
 
-    public void print() throws IOException{
-        File file = new File("B:/Documents/Documents/Programming/IB/src/LinkedList/password.txt");
+    public void print() {
+        try {
+            File file = new File("C:/Users/19augusthummert/Documents/IB/passwords.txt");
 
-        FileWriter fw = new FileWriter(file);
-        fw.write("wow");
+            FileWriter fw = new FileWriter(file);
+            fw.write("wow");
+        }
+        catch (IOException e){
+
+            JOptionPane.showMessageDialog(null, "File Doesn't Exist." + "\n" + e.toString());
+
+        }
 
     }
 
