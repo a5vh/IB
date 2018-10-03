@@ -32,7 +32,6 @@ public class WebsiteGUI extends JFrame {
 
     public WebsiteGUI()
     {
-        JFrame jframe = new JFrame("Password Holder");
         JPanel flow1panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         JPanel flow2panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel flow3panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -65,8 +64,6 @@ public class WebsiteGUI extends JFrame {
         exitButton.addActionListener(event -> exitApplication());
         getButton.addActionListener(event -> get());
 
-        this.setTitle("Password Holder");
-
         displayAll();
 
     }
@@ -96,16 +93,16 @@ public class WebsiteGUI extends JFrame {
             siteName.setText("");
             username.setText("");
             password.setText("");
-
+            displayAll();
        }
-        displayAll();
+
     }
 
     public void displayAll()
     {
         String[] columnNames = {"Sitename", "Username", "Password"};
 
-        DefaultTableModel model = new DefaultTableModel(columnNames, 10);
+        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         JTable table = new JTable(model);
         websiteTextArea.setText(" ");
 
@@ -113,6 +110,7 @@ public class WebsiteGUI extends JFrame {
         ArrayList<String> usernames = new ArrayList<>();
         ArrayList<String> passwords = new ArrayList<>();
 
+        setVisible(true);
 
         for (Website web : websiteLinkedList) {
             for (int i = 0; i < websiteLinkedList.size(); i++)
@@ -123,14 +121,14 @@ public class WebsiteGUI extends JFrame {
             }
         }
 
-        model.addRow(columnNames);
 
+        //getting the site name, username and password at the certain point on the arrayList
         for (int i = 0; i < sitenames.size(); i++) {
             Object[] row = {sitenames.get(i), usernames.get(i), passwords.get(i)};
             model.addRow(row);
         }
 
-        add(table, BorderLayout.NORTH);
+        add(table, FlowLayout.CENTER);
     }
 
     private void exitApplication()
@@ -191,11 +189,11 @@ public class WebsiteGUI extends JFrame {
 
     public static void main (String[] args)
     {
-        WebsiteGUI app = new WebsiteGUI();
+        WebsiteGUI website = new WebsiteGUI();
+        Dimension dimension = new Dimension();
+        dimension.setSize(600, 300);
 
-        app.setVisible(true);
-        app.setSize(550, 200);
-        app.setLocation(200,100);
-        app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        website.setSize(600, 300);
+        website.setVisible(true);
     }
 }
