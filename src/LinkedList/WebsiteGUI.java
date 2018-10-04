@@ -1,15 +1,24 @@
 package LinkedList;
 
+import javafx.scene.control.Tab;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import javax.swing.text.TableView;
 import java.awt.*;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.io.*;
+import java.util.Vector;
 
 //JTable implement
+
+//
 public class WebsiteGUI extends JFrame {
 
     JTextArea websiteTextArea = new JTextArea();
@@ -27,16 +36,27 @@ public class WebsiteGUI extends JFrame {
     JButton displayAllButton = new JButton("DisplayAll");
     JButton exitButton = new JButton("Exit");
     JButton printButton = new JButton("Pirnt To .txt");
+    public  Vector<String> dataString = new Vector<>();
+    public   DefaultTableModel model = new DefaultTableModel(0, 3);
+    JTable table = new JTable(model);
 
     public LinkedList<Website> websiteLinkedList = new LinkedList<Website>();
 
     public WebsiteGUI()
     {
-        JPanel flow1panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        init();
+    }
+
+    public void init()
+    {
+        JPanel flow1panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel flow2panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel flow3panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        JPanel gridPanel = new JPanel(new GridLayout(2, 1));
+        JPanel gridPanel = new JPanel(new GridLayout(3, 1));
+
+        JScrollPane scroll = new JScrollPane(table);
+        add(scroll);
 
         flow1panel.add(siteLabel);
         flow1panel.add(siteName);
@@ -52,12 +72,6 @@ public class WebsiteGUI extends JFrame {
         flow2panel.add(exitButton);
         flow2panel.add(printButton);
 
-        gridPanel.add(flow1panel);
-        gridPanel.add(flow2panel);
-
-
-        add(gridPanel, BorderLayout.SOUTH);
-
         addButton.addActionListener(event -> addWebsite());
         displayAllButton.addActionListener(event -> displayAll());
         deleteButton.addActionListener(event -> deleteWebsite());
@@ -65,8 +79,29 @@ public class WebsiteGUI extends JFrame {
         getButton.addActionListener(event -> get());
         printButton.addActionListener(event -> print());
 
-        displayAll();
+        JTableHeader th = table.getTableHeader();
+        TableColumnModel tcm = th.getColumnModel();
 
+        TableColumn tc0 = tcm.getColumn(0);
+        TableColumn tc1 = tcm.getColumn(1);
+        TableColumn tc2 = tcm.getColumn(2);
+
+        tc0.setHeaderValue("Sitename");
+        tc1.setHeaderValue("Username");
+        tc2.setHeaderValue("Password");
+
+
+        setVisible(true);
+
+
+        gridPanel.add(flow1panel);
+        gridPanel.add(flow2panel);
+        gridPanel.add(flow3panel);
+
+
+        add(gridPanel, BorderLayout.SOUTH);
+        add(table.getTableHeader(), BorderLayout.NORTH);
+        add(table, BorderLayout.CENTER);
     }
 
     private boolean isWebsiteInList(String siteName) {
@@ -94,42 +129,22 @@ public class WebsiteGUI extends JFrame {
             siteName.setText("");
             username.setText("");
             password.setText("");
-            displayAll();
-       }
+            for (Website web : websiteLinkedList) {
+               for (int i = 0; i < websiteLinkedList.size(); i++)
+               {
+                   dataString.add(web.getSiteName());
+                   dataString.add(web.getUserName());
+                   dataString.add(web.getPassword());
+               }
+           }
+           model.addRow(dataString);
 
+       }
     }
 
     public void displayAll()
     {
-        String[] columnNames = {"Sitename", "Username", "Password"};
 
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-        JTable table = new JTable(model);
-        websiteTextArea.setText(" ");
-
-        ArrayList<String> sitenames = new ArrayList<>();
-        ArrayList<String> usernames = new ArrayList<>();
-        ArrayList<String> passwords = new ArrayList<>();
-
-        setVisible(true);
-
-        for (Website web : websiteLinkedList) {
-            for (int i = 0; i < websiteLinkedList.size(); i++)
-            {
-                sitenames.add(i, web.getSiteName());
-                usernames.add(i, web.getUserName());
-                passwords.add(i, web.getPassword());
-            }
-        }
-
-
-        //getting the site name, username and password at the certain point on the arrayList
-        for (int i = 0; i < sitenames.size(); i++) {
-            Object[] row = {sitenames.get(i), usernames.get(i), passwords.get(i)};
-            model.addRow(row);
-        }
-
-        add(table, FlowLayout.CENTER);
     }
 
     private void exitApplication()
