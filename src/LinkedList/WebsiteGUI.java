@@ -1,7 +1,5 @@
 package LinkedList;
 
-import javafx.scene.control.Tab;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -36,6 +34,7 @@ public class WebsiteGUI extends JFrame {
     JButton displayAllButton = new JButton("DisplayAll");
     JButton exitButton = new JButton("Exit");
     JButton printButton = new JButton("Pirnt To .txt");
+
     public  Vector<String> dataString = new Vector<>();
     public   DefaultTableModel model = new DefaultTableModel(0, 3);
     JTable table = new JTable(model);
@@ -51,9 +50,8 @@ public class WebsiteGUI extends JFrame {
     {
         JPanel flow1panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel flow2panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JPanel flow3panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        JPanel gridPanel = new JPanel(new GridLayout(3, 1));
+        JPanel gridPanel = new JPanel(new GridLayout(2, 1));
 
         JScrollPane scroll = new JScrollPane(table);
         add(scroll);
@@ -96,8 +94,6 @@ public class WebsiteGUI extends JFrame {
 
         gridPanel.add(flow1panel);
         gridPanel.add(flow2panel);
-        gridPanel.add(flow3panel);
-
 
         add(gridPanel, BorderLayout.SOUTH);
         add(table.getTableHeader(), BorderLayout.NORTH);
@@ -120,12 +116,16 @@ public class WebsiteGUI extends JFrame {
 
     public void addWebsite()
     {
+
        if (isWebsiteInList(siteName.getText()) == true)
         {
             JOptionPane.showMessageDialog(null, "Error: Website is already listed.");
         } else {
             websiteLinkedList.add(new Website(siteName.getText(), username.getText(),
                     password.getText()));
+           boolean isWeb = isWebsiteInList(siteName.getText());
+           String bool = String.valueOf(isWeb);
+           JOptionPane.showMessageDialog(null, bool);
             siteName.setText("");
             username.setText("");
             password.setText("");
@@ -153,27 +153,16 @@ public class WebsiteGUI extends JFrame {
     }
 
     public void deleteWebsite() {
+        int row = table.getSelectedRow();
 
-        if (websiteLinkedList.size() == 0) {
-            JOptionPane.showMessageDialog(null, "Error: database is empty.");
+        model.removeRow(row);
+
+        displayAll();
+        siteName.setText("");
+        username.setText("");
+        password.setText("");
         }
 
-        if (isWebsiteInList(siteName.getText()) == false) {
-            JOptionPane.showMessageDialog(null, "Error: Site name is not in the database.");
-        } else {
-            for (int s = 0; s < websiteLinkedList.size(); s++)
-            {
-                String currSite = websiteLinkedList.get(s).getSiteName();
-                if (currSite.compareToIgnoreCase(siteName.getText()) == 0) {
-                    websiteLinkedList.remove(s);
-                }
-            }
-            displayAll();
-            siteName.setText("");
-            username.setText("");
-            password.setText("");
-        }
-    }
 
     public void get()
     {
