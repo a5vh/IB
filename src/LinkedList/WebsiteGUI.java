@@ -204,7 +204,7 @@ public class WebsiteGUI extends JFrame {
 
     public void print() {
         try {
-            PrintWriter out = new PrintWriter(new FileWriter("B:/Documents/Documents/Programming/IB/passwords.txt"));
+            PrintWriter out = new PrintWriter(new FileWriter(""));
 
             int count = 1;
             for (Website web : websiteLinkedList)
