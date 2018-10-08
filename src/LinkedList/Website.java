@@ -6,6 +6,7 @@ public class Website {
     private String siteName;
     private String userName;
     private String password;
+    Node head;
 
     public Website()
     {
@@ -50,6 +51,7 @@ public class Website {
     {
         this.password = password;
     }
+
 
     public String toString()
     {
