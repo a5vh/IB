@@ -11,6 +11,11 @@ public class Factorials
         {
             System.out.print("Enter an integer: ");
             int val = scan.nextInt();
+            try {
+                if (Math.signum(val) == -1.0)
+                {
+                }
+
             System.out.println("Factorial(" + val + ") = "
                     + MathUtils.factorial(val));
             System.out.print("Another factorial? (y/n) ");

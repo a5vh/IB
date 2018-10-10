@@ -1,5 +1,5 @@
 package Exceptions;
-/**
+
 import java.util.Scanner;
 import java.io.*;
 public class Warning
@@ -22,17 +22,37 @@ public class Warning
             Scanner scan = new Scanner(inputName);
 // Set up the output file stream
             FileOutputStream fileoutput = new FileOutputStream(outputName);
+            FileWriter fw = new FileWriter(outputName);
 // Print a header to the output file
-            outFile.println ();
-            outFile.println ("Students on Academic Warning");
-            outFile.println ();
+            fw.write("\n");
+            fw.write("Students on Academic Warning");
+            fw.write("\n");
 // Process the input file, one token at a time
-            while ()
+            while (scan.hasNextLine())
             {
-
+                line = scan.nextLine();
+                creditHrs = scan.nextInt();
+                qualityPts = scan.nextDouble();
 // Get the credit hours and quality points and
 // determine if the student is on warning. If so,
 // write the student data to the output file.
+                gpa = creditHrs/qualityPts;
+                if (gpa < 1.5 && creditHrs < 30)
+                {
+                    fw.write(line + " " + creditHrs + " " + gpa);
+                }
+
+                if (gpa < 1.75 && creditHrs < 60)
+                {
+                    fw.write(line + " " + creditHrs + " " + gpa);
+                }
+
+                if (gpa < 2.0 && creditHrs > 60)
+                {
+                    fw.write(line + " " + creditHrs + " " + gpa);
+                }
+
+                fw.close();
             }
 // Close output file
         }
@@ -50,4 +70,3 @@ public class Warning
         }
     }
 }
-        **/
