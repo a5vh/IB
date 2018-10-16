@@ -3,6 +3,9 @@ package Exceptions;
 
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import java.io.*;
 
@@ -27,11 +30,12 @@ public class CSVProgram {
             br = new BufferedReader(new FileReader(file));
             while ((nextLine = br.readLine()) != null) {
 
-                String[] Students = nextLine.split(cvsSplitBy);
+                List<String> list = new ArrayList<String>(Arrays.asList(nextLine.split(",")));
 
-                System.out.println("Name: " + Students[0] + "\n" + "Grade in Class: " + Students[1]
-                        + "%" + "\n" + "Grade: " + Students[2] + "\n" + "All assignments turned in?: "
-                        + Students[3] + "\n");
+                for(int i = 0; i < list.size(); i++)
+                {
+                    System.out.println(list.get(i));
+                }
             }
             br.close();
 

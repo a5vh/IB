@@ -1,5 +1,7 @@
 package Exceptions;
 
+import java.nio.file.NoSuchFileException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.io.*;
 public class Warning
@@ -14,13 +16,15 @@ public class Warning
         int creditHrs; // number of semester hours earned
         double qualityPts; // number of quality points earned
         double gpa; // grade point (quality point) average
-        String line, name, inputName = "students.dat";
-        String outputName = "warning.dat";
+        String line, name, inputName = "src/Files/students.dat";
+        String outputName = "src/Files/warning.dat";
         try
         {
 // Set up scanner to input file
-            Scanner scan = new Scanner(inputName);
+
 // Set up the output file stream
+            FileInputStream fileInput = new FileInputStream(inputName);
+            Scanner scan = new Scanner(inputName);
             FileOutputStream fileoutput = new FileOutputStream(outputName);
             FileWriter fw = new FileWriter(outputName);
 // Print a header to the output file
@@ -30,9 +34,10 @@ public class Warning
 // Process the input file, one token at a time
             while (scan.hasNextLine())
             {
-                line = scan.nextLine();
-                creditHrs = scan.nextInt();
-                qualityPts = scan.nextDouble();
+                Scanner scan2 = new Scanner(scan.nextLine());
+                line = scan2.next();
+                creditHrs = fileInput.read();
+                qualityPts = fileInput.read();
 // Get the credit hours and quality points and
 // determine if the student is on warning. If so,
 // write the student data to the output file.
@@ -51,9 +56,9 @@ public class Warning
                 {
                     fw.write(line + " " + creditHrs + " " + gpa);
                 }
-
-                fw.close();
             }
+
+            fw.close();
 // Close output file
         }
         catch (FileNotFoundException exception)
@@ -67,6 +72,10 @@ public class Warning
         catch (NumberFormatException e)
         {
             System.out.println ("Format error in input file: " + e);
+        }
+        catch (NoSuchElementException e)
+        {
+            e.printStackTrace();
         }
     }
 }

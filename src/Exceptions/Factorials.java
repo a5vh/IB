@@ -17,7 +17,7 @@ public class Factorials {
                 System.out.print("Another factorial? (y/n) ");
                 keepGoing = scan.next();
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
         }
     }
