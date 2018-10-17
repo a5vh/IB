@@ -22,11 +22,11 @@ public class WebsiteGUI extends JFrame {
     JTextArea websiteTextArea = new JTextArea();
 
     JLabel siteLabel = new JLabel("Website Name: ");
-    JTextField siteName = new JTextField(7);
+    JTextField siteName = new JTextField(9);
     JLabel userLabel = new JLabel("Username: ");
-    JTextField username = new JTextField(7);
+    JTextField username = new JTextField(9);
     JLabel passwordLabel = new JLabel("Password: ");
-    JTextField password = new JTextField(7);
+    JTextField password = new JTextField(9);
 
     JButton addButton = new JButton("Add");
     JButton deleteButton = new JButton("Delete");

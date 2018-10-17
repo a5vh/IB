@@ -21,7 +21,7 @@ public class FileCopying {
         while (!tryAgain) {
             try {
                 fileName = scan.next();
-                File file = new File("src/" + fileName + ".txt");
+                File file = new File("src/Files/" + fileName + ".txt");
                 Scanner scanner = new Scanner(file);
 
                 while (scanner.hasNextLine())

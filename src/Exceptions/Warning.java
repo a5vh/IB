@@ -28,6 +28,7 @@ public class Warning
             FileOutputStream fileoutput = new FileOutputStream(outputName);
             FileWriter fw = new FileWriter(outputName);
 // Print a header to the output file
+
             fw.write("\n");
             fw.write("Students on Academic Warning");
             fw.write("\n");
@@ -41,18 +42,19 @@ public class Warning
 // Get the credit hours and quality points and
 // determine if the student is on warning. If so,
 // write the student data to the output file.
-                gpa = creditHrs/qualityPts;
+
+                gpa = qualityPts/creditHrs;
                 if (gpa < 1.5 && creditHrs < 30)
                 {
                     fw.write(line + " " + creditHrs + " " + gpa);
                 }
 
-                if (gpa < 1.75 && creditHrs < 60)
+                if (gpa < 1.75 && gpa > 1.5 && creditHrs < 60)
                 {
                     fw.write(line + " " + creditHrs + " " + gpa);
                 }
 
-                if (gpa < 2.0 && creditHrs > 60)
+                if (gpa < 2.0 && gpa > 1.75)
                 {
                     fw.write(line + " " + creditHrs + " " + gpa);
                 }
