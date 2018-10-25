@@ -1,56 +1,41 @@
 package Stacks;
 import java.util.*;
 
-public class CargoShip implements Comparable<Dog> {
-
-    public int compareTo(Dog that) {
-
-    }
+public class CargoShip {
 
     public static void main (String [] args) {
 
-        String cont = "yes";
-        String breed = " ";
-        String name = " ";
+        String cont = "no";
+        int integer = 0;
         Scanner scan = new Scanner(System.in);
-        Stack<Dog> stack = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
 
         while (cont.equalsIgnoreCase("yes") || (cont.equalsIgnoreCase("y"))) {
 
-            System.out.println("Enter the breed of the current dog.");
-            breed = scan.nextLine();
-            System.out.println("\nEnter the name of the " + breed);
-            name = scan.nextLine();
+            System.out.println("Enter an int to load.");
+            integer = scan.nextInt();
 
-            Dog dog = new Dog(breed, name);
-            stack.push(dog);
+            stack.push(integer);
 
-            System.out.println("\nEnter another dog?");
+            System.out.println("\nEnter another int?");
             cont = scan.nextLine();
 
         }
 
-        ArrayList<Dog> dogs = new ArrayList<>(stack);
+        stack
 
+        ArrayList<Integer> cargoShip = new ArrayList<>(stack);
+        int numberAway = 0;
 
-
-        for (Dog dog : dogs)
+        for (int i = 0; i < cargoShip.size(); i++)
         {
-            System.out.println(dog.getName());
+            numberAway = cargoShip.get(i).compareTo(i + 1);
+
+            if (numberAway < 0.0)
+            {
+                cargoShip.set(i, i-numberAway);
+            }
         }
 
     }
 }
-
-
-/**
- public class Employee implements Comparable<Employee> {
- ...
- public int compareTo(Employee that) {
- return this.id.compareTo(that.id);
- }
- }
-
- Collections.sort(employees);
-
- **/
