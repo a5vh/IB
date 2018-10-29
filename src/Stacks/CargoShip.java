@@ -22,8 +22,6 @@ public class CargoShip {
 
         }
 
-        stack
-
         ArrayList<Integer> cargoShip = new ArrayList<>(stack);
         int numberAway = 0;
 
