@@ -1,6 +1,6 @@
 package Stacks;
 
-public class StackTest
+public class StackTestArray
 {
     public static void main(String[] args)
     {

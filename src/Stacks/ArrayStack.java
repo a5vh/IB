@@ -10,7 +10,7 @@ public class ArrayStack implements StackADT
     public ArrayStack()
     {
         elements = new Object[stackSize];
-        top = -1;
+        top = 0;
     }
     // --------------------------------------------------
 // Adds element to top of stack if it’s not full, else
@@ -34,7 +34,7 @@ public class ArrayStack implements StackADT
 // --------------------------------------------------
     public Object pop()
     {
-        if (!isEmpty())
+        if (isEmpty())
             return null;
         else
         {
@@ -47,7 +47,7 @@ public class ArrayStack implements StackADT
 // --------------------------------------------------
     public boolean isEmpty()
     {
-        if (elements.length == 0)
+        if (top == 0)
             return true;
         else
             return false;
