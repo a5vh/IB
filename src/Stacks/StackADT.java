@@ -1,4 +1,5 @@
 package Stacks;
+import java.util.*;
 
 public interface StackADT
 {
@@ -18,4 +19,7 @@ public interface StackADT
 // Returns true if stack is full, false otherwise.
 // --------------------------------------------------
     public boolean isFull();
+
+
+
 }

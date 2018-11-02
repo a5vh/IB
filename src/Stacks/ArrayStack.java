@@ -1,4 +1,7 @@
 package Stacks;
+
+import java.util.*;
+
 public class ArrayStack implements StackADT
 {
     private int stackSize = 5; // capacity of stack
@@ -62,4 +65,21 @@ public class ArrayStack implements StackADT
         else
             return false;
     }
+
+    public void printStack(Stack s)
+    {
+
+    }
+
+    public Stack reverseStack(Stack s)
+    {
+        return s;
+    }
+
+    public Stack removeElement(Stack s, int val)
+    {
+        return s;
+    }
+
+
 }
