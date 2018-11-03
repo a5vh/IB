@@ -50,7 +50,7 @@ public class CSVProgram {
         while (cont.equalsIgnoreCase("y") || cont.equalsIgnoreCase("yes"))
 
         {
-            System.out.println("Enter the name of the student.");
+            System.out.println("\nEnter the name of the student.\n");
             name = scan.next();
 
             System.out.println("Enter " + name + "'s grade in the current class.");

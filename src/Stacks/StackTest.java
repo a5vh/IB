@@ -54,7 +54,7 @@ public class StackTest {
         test.printStack(stack);
         // call removeElement to remove all occurrences of the value 5 – save the
         // stack returned from this call
-        test.removeElement(stack, )
+        //test.removeElement(stack, )
 
         // call printStack to print the original stack and the new stack.
 
