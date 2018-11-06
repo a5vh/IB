@@ -4,25 +4,34 @@ import java.util.*;
 
 public class ShoppingCart {
 
-    public double totalPrice;
-
     public int largeBag;
     public int mediumBag;
     public int smallBag;
 
-    Stack cart = new Stack();
-    Queue<String> checkoutLane = new LinkedList<>();
+    Stack<Item> cart = new Stack<>();
 
-    Scanner scan = new Scanner(System.in);
+    Queue<Item> checkoutLane = new LinkedList<>();
 
     public ShoppingCart()
     {
-        totalPrice = 0.0;
+        cart.add(null);
     }
 
     public void addToCart(String itemName, double price, int quantity)
     {
-        itemName = scan.next();
-        price = scan.nextDouble();
+        Item item = new Item(price, itemName, quantity);
+        cart.add(item);
+    }
+
+    public void printCart()
+    {
+        System.out.println("Cart Size: " + cart.size());
+
+        System.out.println("Items from first in last out.");
+
+        for (int i = 0; i < cart.size(); i++)
+        {
+            System.out.println(cart.pop().getItemName());
+        }
     }
 }
