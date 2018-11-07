@@ -18,8 +18,20 @@ public class CheckoutLine {
     {
         for (int i = 0; i < cart.size(); i++)
         {
-            checkoutLane.add(cart.pop());
-
+            checkoutLane.offer(cart.pop());
         }
     }
+
+    public void printCheckout()
+    {
+        System.out.println("Amount of items: ");
+
+        System.out.println("Items from the top of the cart to the bottom.");
+
+        for (int i = 0; i < checkoutLane.size(); i++)
+        {
+            checkoutLane.poll();
+        }
+    }
+
 }

@@ -7,9 +7,11 @@ public class Store {
     public static void main (String [] args)
     {
         ShoppingCart cart = new ShoppingCart();
+        CheckoutLine checkout = new CheckoutLine();
         Scanner scan = new Scanner(System.in);
         String cont = "y";
 
+/**
         while (cont.equalsIgnoreCase("y"))
         {
             System.out.println("Enter the item name from the cart.");
@@ -26,8 +28,19 @@ public class Store {
             System.out.println("Any more items? (y/n)");
             cont = scan.next();
         }
+         **/
+
+        cart.addToCart("Peaches", 2.99, 4);
+        cart.addToCart("Pears", 1.99, 3);
 
         cart.printCart();
+
+        cart.stackToQueue();
+
+        cart.printCheckout();
+
+
+
     }
 
 

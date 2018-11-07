@@ -10,6 +10,8 @@ public class ShoppingCart {
 
     Stack<Item> cart = new Stack<>();
 
+    public double totalPrice;
+
     Queue<Item> checkoutLane = new LinkedList<>();
 
     public ShoppingCart()
@@ -31,7 +33,30 @@ public class ShoppingCart {
 
         for (int i = 0; i < cart.size(); i++)
         {
-            System.out.println(cart.pop().getItemName());
+            System.out.println(cart.get(i).getItemName());
+        }
+    }
+
+    public void stackToQueue()
+    {
+        for (int i = 0; i < cart.size(); i++) {
+            try {
+                checkoutLane.add(cart.pop());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void printCheckout()
+    {
+        System.out.println("Amount of items: " + checkoutLane.size() + "\n");
+
+        System.out.println("Items from the top of the cart to the bottom:");
+
+        for (int i = 0; i < checkoutLane.size() + 1; i++)
+        {
+            System.out.println(checkoutLane.poll().getItemName());
         }
     }
 }
