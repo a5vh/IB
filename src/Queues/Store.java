@@ -6,10 +6,16 @@ public class Store {
 
     public static void main (String [] args)
     {
-        ShoppingCart cart = new ShoppingCart();
-        CheckoutLine checkout = new CheckoutLine();
+
+        Queue<Item> checkoutLine = new LinkedList<>();
+        Stack shoppingCart = new Stack();
+
         Scanner scan = new Scanner(System.in);
         String cont = "y";
+
+        ShoppingCart cart = new ShoppingCart(shoppingCart);
+        CheckoutLine checkout = new CheckoutLine(checkoutLine, shoppingCart);
+
 
 /**
         while (cont.equalsIgnoreCase("y"))
@@ -35,9 +41,11 @@ public class Store {
 
         cart.printCart();
 
-        cart.stackToQueue();
+        checkout.stackToQueue(shoppingCart);
+        checkout.printCheckout();
 
-        cart.printCheckout();
+
+
 
 
 
