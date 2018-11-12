@@ -4,10 +4,6 @@ import java.util.*;
 
 public class ShoppingCart {
 
-    public int largeBag;
-    public int mediumBag;
-    public int smallBag;
-
     Stack<Item> cart = new Stack<>();
 
     public double totalPrice;
@@ -21,9 +17,9 @@ public class ShoppingCart {
     {
     }
 
-    public void addToCart(String itemName, double price, int quantity)
+    public void addToCart(String itemName, double price, int quantity, String size)
     {
-        Item item = new Item(price, itemName, quantity);
+        Item item = new Item(price, itemName, quantity, size);
         cart.add(item);
     }
 
@@ -31,7 +27,7 @@ public class ShoppingCart {
     {
         System.out.println("Cart Size: " + cart.size());
 
-        System.out.println("Items from first in last out.");
+        System.out.println("Items in the cart: ");
 
         for (int i = cart.size() - 1; i >= 0; i--)
             System.out.println(cart.get(i).getItemName());

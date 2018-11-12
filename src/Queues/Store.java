@@ -17,7 +17,7 @@ public class Store {
         CheckoutLine checkout = new CheckoutLine(checkoutLine, shoppingCart);
 
 
-/**
+
         while (cont.equalsIgnoreCase("y"))
         {
             System.out.println("Enter the item name from the cart.");
@@ -29,25 +29,19 @@ public class Store {
             System.out.println("Enter the quantity of " + itemName);
             int quantity = scan.nextInt();
 
-            cart.addToCart(itemName, price, quantity);
+            System.out.println("Is the item small, medium or large?");
+            String size = scan.next();
+
+            cart.addToCart(itemName, price, quantity, size);
 
             System.out.println("Any more items? (y/n)");
             cont = scan.next();
+
+            cart.printCart();
         }
-         **/
-
-        cart.addToCart("Peaches", 2.99, 4);
-        cart.addToCart("Pears", 1.99, 3);
-
-        cart.printCart();
 
         checkout.stackToQueue(shoppingCart);
         checkout.printCheckout();
-
-
-
-
-
 
     }
 

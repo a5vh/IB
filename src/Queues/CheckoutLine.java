@@ -1,13 +1,15 @@
 package Queues;
 //override add method for linkedlist
 //have to use Item for stack/queue
+import sun.awt.EventQueueItem;
+
 import java.util.*;
 
 public class CheckoutLine {
 
     public double totalPrice;
 
-    Queue<Item> checkoutLane = new LinkedList<>();
+    Queue<Object> checkoutLane = new LinkedList<>();
     Stack wowStack = new Stack();
 
     public CheckoutLine(Queue checkout, Stack stack)
@@ -23,7 +25,7 @@ public class CheckoutLine {
 
     public void stackToQueue(Stack cart)
     {
-        for (int i = 0; i < cart.size(); i++)
+        for (int i = 0; i < cart.size() + 1; i++)
         {
             checkoutLane.offer(wowStack.pop());
         }
@@ -33,11 +35,11 @@ public class CheckoutLine {
     {
         System.out.println("\nAmount of items: " + checkoutLane.size());
 
-        System.out.println("Items from the top of the cart to the bottom.");
+        System.out.println("Items on the belt: ");
 
-        for (int i = 0; i < checkoutLane.size(); i++)
+        for (int i = 0; i < checkoutLane.size() + 1; i++)
         {
-            System.out.println(checkoutLane.poll().getItemName());
+            System.out.println(checkoutLane.poll().toString());
         }
     }
 

@@ -6,12 +6,14 @@ public class Item {
     double price;
     String itemName;
     int quantity;
+    String size;
 
-    public Item(double price, String itemName, int quantity)
+    public Item(double price, String itemName, int quantity, String size)
     {
         this.price = price;
         this.itemName = itemName;
         this.quantity = quantity;
+        this.size = size;
     }
 
     public Item()
@@ -30,5 +32,12 @@ public class Item {
     public int getQuantity()
     {
         return quantity;
+    }
+
+    public String getSize() { return size; }
+
+    @Override
+    public String toString() {
+        return this.getItemName();
     }
 }
