@@ -9,8 +9,8 @@ public class CheckoutLine {
 
     public double totalPrice;
 
-    Queue<Object> checkoutLane = new LinkedList<>();
-    Stack wowStack = new Stack();
+    Queue<Item> checkoutLane = new LinkedList<>();
+    Stack<Item> wowStack = new Stack<>();
 
     public CheckoutLine(Queue checkout, Stack stack)
     {
@@ -27,7 +27,8 @@ public class CheckoutLine {
     {
         for (int i = 0; i < cart.size() + 1; i++)
         {
-            checkoutLane.offer(wowStack.pop());
+            Item item = wowStack.pop();
+            checkoutLane.add(item);
         }
     }
 
@@ -35,11 +36,14 @@ public class CheckoutLine {
     {
         System.out.println("\nAmount of items: " + checkoutLane.size());
 
-        System.out.println("Items on the belt: ");
+        System.out.println("Name:  \tPrice: ");
+        System.out.println("=======\t=======");
 
-        for (int i = 0; i < checkoutLane.size() + 1; i++)
+
+        for (int i = 0; i < checkoutLane.size(); i++)
         {
-            System.out.println(checkoutLane.poll().toString());
+            Item item = checkoutLane.remove();
+            System.out.println(item.getItemName() + "\t" + item.getPrice() + "\t" + checkoutLane.size());
         }
     }
 
