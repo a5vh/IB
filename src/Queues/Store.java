@@ -1,5 +1,7 @@
 package Queues;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.*;
 
 public class Store {
@@ -12,9 +14,12 @@ public class Store {
 
         Scanner scan = new Scanner(System.in);
         String cont = "y";
+        double total = 0.0;
 
         ShoppingCart cart = new ShoppingCart(shoppingCart);
         CheckoutLine checkout = new CheckoutLine(checkoutLine, shoppingCart);
+        NumberFormat formatter = new DecimalFormat("$#0.00");
+
 
 
 /**
@@ -41,18 +46,25 @@ public class Store {
 
         cart.addToCart("Peaches", 1.99, "small");
         cart.addToCart("Pears", 2.99, "small");
-        cart.addToCart("Dog Food", 20.99, "large");
+        cart.addToCart("Dogfood", 20.99, "large");
         cart.addToCart("Milk", 5.99, "medium");
 
-        System.out.println(shoppingCart.size());
+        cart.printCart();
 
         checkout.stackToQueue(shoppingCart);
 
-        System.out.println(shoppingCart.size());
-
         System.out.println("Items transferred to conveyor belt \nfor scanning and bagging.");
+
         checkout.printCheckout();
 
+        for (int i = 0; i < checkoutLine.size(); i++)
+        {
+            Item item = checkoutLine.poll();
+            total += item.getPrice() + .01;
+            checkoutLine.add(item);
+        }
+
+        System.out.println("\n" + formatter.format(total));
     }
 
 

@@ -25,10 +25,10 @@ public class CheckoutLine {
 
     public void stackToQueue(Stack cart)
     {
-        for (int i = 0; i < cart.size() + 1; i++)
+        int size = cart.size();
+        for (int i = 0; i < size; i++)
         {
-            Item item = wowStack.pop();
-            checkoutLane.add(item);
+            checkoutLane.add(wowStack.pop());
         }
     }
 
@@ -39,12 +39,13 @@ public class CheckoutLine {
         System.out.println("Name:  \tPrice: ");
         System.out.println("=======\t=======");
 
+        int size = checkoutLane.size();
 
-        for (int i = 0; i < checkoutLane.size(); i++)
+        for (int i = 0; i < size; i++)
         {
-            Item item = checkoutLane.remove();
-            System.out.println(item.getItemName() + "\t" + item.getPrice() + "\t" + checkoutLane.size());
+            Item item = checkoutLane.poll();
+            System.out.println(item.getItemName() + "\t" + item.getPrice());
+            checkoutLane.add(item);
+        }
         }
     }
-
-}

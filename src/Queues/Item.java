@@ -35,8 +35,7 @@ public class Item {
 
     public String getSize() { return size; }
 
-    @Override
-    public String toString() {
-        return this.getItemName();
-    }
+    //public String toString() {
+      //  return this.getItemName();
+    //}
 }
