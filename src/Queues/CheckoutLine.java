@@ -3,6 +3,9 @@ package Queues;
 //have to use Item for stack/queue
 import sun.awt.EventQueueItem;
 
+import java.lang.reflect.Array;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.*;
 
 public class CheckoutLine {
@@ -11,6 +14,8 @@ public class CheckoutLine {
 
     Queue<Item> checkoutLane = new LinkedList<>();
     Stack<Item> wowStack = new Stack<>();
+
+    NumberFormat formatter = new DecimalFormat("$#.00");
 
     public CheckoutLine(Queue checkout, Stack stack)
     {
@@ -36,16 +41,46 @@ public class CheckoutLine {
     {
         System.out.println("\nAmount of items: " + checkoutLane.size());
 
-        System.out.println("Name:  \tPrice: ");
-        System.out.println("=======\t=======");
+        System.out.println("Name:  \t\tPrice: \tSize:");
+        System.out.println("=======\t\t=======\t=======");
 
-        int size = checkoutLane.size();
+        Item[] items = new Item[checkoutLane.size()];
 
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < items.length; i++)
         {
             Item item = checkoutLane.poll();
-            System.out.println(item.getItemName() + "\t" + item.getPrice());
+            items[i] = item;
             checkoutLane.add(item);
         }
+
+        for (int i = 0; i < items.length; i++)
+        {
+            if (items[i].getSize().compareTo(items[i+1].getSize()) == 0)
+            {
+
+            }
+
+            if (items[i].getSize().compareTo(items[i+1].getSize()) < 0)
+            {
+                int offset = items[i].getSize().compareTo(items[i+1].getSize());
+                items[i] = items[i-offset];
+            }
+
+            if (items[i].getSize().compareTo(items[i+1].getSize()) > 0)
+            {
+                int offset = items[i].getSize().compareTo(items[i+1].getSize());
+                items[i] = items[i+offset];
+            }
+        }
+
+        for (int i = 0; i < items.length; i++)
+        {
+            Item itemCheckout = checkoutLane.poll();
+            Item item = items[i];
+            System.out.println(item.getItemName() + "\t\t" + formatter.format(item.getPrice()) + "\t" +
+                    item.getSize());
+            checkoutLane.add(itemCheckout);
         }
     }
+}
+

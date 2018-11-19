@@ -14,7 +14,7 @@ public class Store {
 
         Scanner scan = new Scanner(System.in);
         String cont = "y";
-        double total = 0.0;
+        double total = 0.00;
 
         ShoppingCart cart = new ShoppingCart(shoppingCart);
         CheckoutLine checkout = new CheckoutLine(checkoutLine, shoppingCart);
@@ -26,13 +26,13 @@ public class Store {
         while (cont.equalsIgnoreCase("y"))
         {
             System.out.println("Enter the item name from the shelf.");
-            String itemName = scan.next();
+            String itemName = scan.nextLine();
 
-            System.out.println("Enter the price of " + itemName);
+            System.out.println("Enter the price of " + itemName + " (round to the nearest # if a decimal.");
             double price = scan.nextDouble();
 
             System.out.println("Is the item small, medium or large?");
-            String size = scan.next();
+            String size = scan.nextLine();
 
             cart.addToCart(itemName, price, size);
 
@@ -44,10 +44,10 @@ public class Store {
 **/
         System.out.println(shoppingCart.size());
 
-        cart.addToCart("Peaches", 1.99, "small");
-        cart.addToCart("Pears", 2.99, "small");
-        cart.addToCart("Dogfood", 20.99, "large");
-        cart.addToCart("Milk", 5.99, "medium");
+        cart.addToCart("Peaches", 2, "small");
+        cart.addToCart("Pears", 3, "small");
+        cart.addToCart("Dogfood", 21, "large");
+        cart.addToCart("Milk", 6, "medium");
 
         cart.printCart();
 
@@ -60,7 +60,8 @@ public class Store {
         for (int i = 0; i < checkoutLine.size(); i++)
         {
             Item item = checkoutLine.poll();
-            total += item.getPrice() + .01;
+            double currentPrice = item.getPrice();
+            total += currentPrice;
             checkoutLine.add(item);
         }
 
