@@ -18,9 +18,7 @@ public class Solution {
         array[j] = tmp;
     }
 
-    public static void main(String [] args)
-    {
-
+    public static void main(String [] args) {
     }
 }
 

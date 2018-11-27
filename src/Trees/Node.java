@@ -5,8 +5,7 @@ public class Node {
     Node left, right;
     int data;
 
-    public Node (int data)
-    {
+    public Node(int data) {
         this.data = data;
     }
 
@@ -83,6 +82,4 @@ public class Node {
 
         System.out.println(data);
     }
-
-
 }
