@@ -21,7 +21,7 @@ public class IntList extends JFrame {
         init();
         String root = rootText.getText();
         int rootNum = Integer.parseInt(root);
-        
+
 
         root = new Node(rootNum);
     }
