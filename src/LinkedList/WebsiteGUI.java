@@ -95,9 +95,7 @@ public class WebsiteGUI extends JFrame {
         tc1.setHeaderValue("Username");
         tc2.setHeaderValue("Password");
 
-
         setVisible(true);
-
 
         gridPanel.add(flow1panel, BorderLayout.CENTER);
         gridPanel.add(flow2panel, BorderLayout.CENTER);
