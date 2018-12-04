@@ -3,6 +3,7 @@ package Queues;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
+import java.util.Comparator;
 
 public class Store {
 
@@ -55,6 +56,8 @@ public class Store {
 
         System.out.println("Items transferred to conveyor belt \nfor scanning and bagging.");
 
+        ((LinkedList<Item>) checkoutLine).sort(Comparator.comparing(Item::getSize));
+
         checkout.printCheckout();
 
         for (int i = 0; i < checkoutLine.size(); i++)
@@ -64,6 +67,8 @@ public class Store {
             total += currentPrice;
             checkoutLine.add(item);
         }
+
+        checkout.bagItems();
 
         System.out.println("\n" + formatter.format(total));
     }

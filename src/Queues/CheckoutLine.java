@@ -2,11 +2,15 @@ package Queues;
 //override add method for linkedlist
 //have to use Item for stack/queue
 
+import org.omg.SendingContext.RunTime;
+
+import javax.naming.Name;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 
 public class CheckoutLine {
+
 
     public double totalPrice;
 
@@ -53,26 +57,6 @@ public class CheckoutLine {
 
         for (int i = 0; i < items.length; i++)
         {
-            if (items[i].getSize().compareTo(items[i+1].getSize()) == 0)
-            {
-
-            }
-
-            if (items[i].getSize().compareTo(items[i+1].getSize()) < 0)
-            {
-                int offset = items[i].getSize().compareTo(items[i+1].getSize());
-                items[i] = items[i-offset];
-            }
-
-            if (items[i].getSize().compareTo(items[i+1].getSize()) > 0)
-            {
-                int offset = items[i].getSize().compareTo(items[i+1].getSize());
-                items[i] = items[i+offset];
-            }
-        }
-
-        for (int i = 0; i < items.length; i++)
-        {
             Item itemCheckout = checkoutLane.poll();
             Item item = items[i];
             System.out.println(item.getItemName() + "\t\t" + formatter.format(item.getPrice()) + "\t" +
@@ -80,5 +64,53 @@ public class CheckoutLine {
             checkoutLane.add(itemCheckout);
         }
     }
-}
 
+    public void bagItems()
+    {
+        ArrayList<Item> large = new ArrayList<>();
+        ArrayList<Item> medium = new ArrayList<>();
+        ArrayList<Item> small = new ArrayList<>();
+
+        for(int i = 0; i < checkoutLane.size(); i++) {
+
+            Item item = checkoutLane.poll();
+            if (item.getSize().equalsIgnoreCase("large"))
+            {
+                large.add(item);
+            }
+            if (item.getSize().equalsIgnoreCase("medium"));
+            {
+                medium.add(item);
+            }
+            if (item.getSize().equalsIgnoreCase("small"));
+            {
+                small.add(item);
+            }
+        }
+
+        System.out.println("Large Items:\tPrice:\t");
+        System.out.println("============\t======\t");
+        for(int l = 0; l < large.size(); l++)
+        {
+            System.out.println(large.get(l).getItemName() + "" + large.get(l).getPrice());
+        }
+        System.out.println("\n");
+
+        System.out.println("Medium Items:\tPrice:\t");
+        System.out.println("============\t======\t");
+        for(int l = 0; l < medium.size(); l++)
+        {
+            System.out.println(medium.get(l).getItemName() + "\t" + medium.get(l).getPrice());
+        }
+        System.out.println("\n");
+
+
+        System.out.println("Small Items:\tPrice:\t");
+        System.out.println("============\t======\t");
+        for(int l = 0; l < small.size(); l++)
+        {
+            System.out.println(small.get(l).getItemName() + "\t" + small.get(l).getPrice());
+        }
+        System.out.println("\n");
+    }
+}
