@@ -1,11 +1,20 @@
 package Queues;
 
+import javax.swing.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.Comparator;
 
-public class Store {
+public class Store extends JFrame {
+
+    public Store(String title)
+    {
+        super(title);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(400,400);
+        this.setVisible(true);
+    }
 
     public static void main (String [] args)
     {
@@ -21,8 +30,13 @@ public class Store {
         CheckoutLine checkout = new CheckoutLine(checkoutLine, shoppingCart);
         NumberFormat formatter = new DecimalFormat("$#0.00");
 
+        Store store = new Store("GUI");
+        JPanel panel = new JPanel();
+        JTable table = new JTable();
 
+        panel.add(table);
 
+        store.add(panel);
 /**
         while (cont.equalsIgnoreCase("y"))
         {)
@@ -80,6 +94,8 @@ public class Store {
         checkout.bagItems();
 
         System.out.println("\n" + formatter.format(total));
+
+
     }
 
 

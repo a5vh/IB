@@ -89,6 +89,9 @@ public class CheckoutLine {
             }
         }
 
+
+
+
         System.out.println("Large Items:\t\tPrice:");
         System.out.println("============\t\t======");
         for(int l = 0; l < large.size(); l++)
