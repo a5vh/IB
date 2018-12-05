@@ -25,7 +25,7 @@ public class Store {
 
 /**
         while (cont.equalsIgnoreCase("y"))
-        {
+        {)
             System.out.println("Enter the item name from the shelf.");
             String itemName = scan.nextLine();
 
@@ -67,6 +67,15 @@ public class Store {
             total += currentPrice;
             checkoutLine.add(item);
         }
+
+        for (int i = 0; i < checkoutLine.size(); i++)
+        {
+            Item item = checkoutLine.poll();
+            System.out.println(item.getItemName());
+            checkoutLine.add(item);
+        }
+
+        System.out.println("\n");
 
         checkout.bagItems();
 

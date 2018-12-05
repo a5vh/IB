@@ -2,8 +2,6 @@ package Queues;
 //override add method for linkedlist
 //have to use Item for stack/queue
 
-import org.omg.SendingContext.RunTime;
-
 import javax.naming.Name;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -71,33 +69,36 @@ public class CheckoutLine {
         ArrayList<Item> medium = new ArrayList<>();
         ArrayList<Item> small = new ArrayList<>();
 
-        for(int i = 0; i < checkoutLane.size(); i++) {
+
+        int size = checkoutLane.size();
+
+        for (int i = 0; i < size; i++) {
 
             Item item = checkoutLane.poll();
             if (item.getSize().equalsIgnoreCase("large"))
             {
                 large.add(item);
             }
-            if (item.getSize().equalsIgnoreCase("medium"));
+            if (item.getSize().equalsIgnoreCase("medium"))
             {
                 medium.add(item);
             }
-            if (item.getSize().equalsIgnoreCase("small"));
+            if (item.getSize().equalsIgnoreCase("small"))
             {
                 small.add(item);
             }
         }
 
-        System.out.println("Large Items:\tPrice:\t");
-        System.out.println("============\t======\t");
+        System.out.println("Large Items:\t\tPrice:");
+        System.out.println("============\t\t======");
         for(int l = 0; l < large.size(); l++)
         {
-            System.out.println(large.get(l).getItemName() + "" + large.get(l).getPrice());
+            System.out.println(large.get(l).getItemName() + "\t\t" + large.get(l).getPrice());
         }
         System.out.println("\n");
 
-        System.out.println("Medium Items:\tPrice:\t");
-        System.out.println("============\t======\t");
+        System.out.println("Medium Items:\tPrice:");
+        System.out.println("============\t======");
         for(int l = 0; l < medium.size(); l++)
         {
             System.out.println(medium.get(l).getItemName() + "\t" + medium.get(l).getPrice());
@@ -105,8 +106,8 @@ public class CheckoutLine {
         System.out.println("\n");
 
 
-        System.out.println("Small Items:\tPrice:\t");
-        System.out.println("============\t======\t");
+        System.out.println("Small Items: \tPrice:");
+        System.out.println("============ \t======");
         for(int l = 0; l < small.size(); l++)
         {
             System.out.println(small.get(l).getItemName() + "\t" + small.get(l).getPrice());
