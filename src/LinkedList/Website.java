@@ -1,6 +1,6 @@
 package LinkedList;
 
-public class Website {
+/**public class Website {
 
     public static final String WEB = ".com";
     private String siteName;
@@ -60,3 +60,4 @@ public class Website {
 
 
 }
+ **/

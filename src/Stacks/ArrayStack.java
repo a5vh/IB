@@ -68,7 +68,15 @@ public class ArrayStack implements StackADT
 
     public void printStack(Stack s)
     {
+        for (int i = 0; i < s.size(); i++)
+        {
+            System.out.println(i);
+        }
+    }
 
+    public int getSize()
+    {
+        return elements.length;
     }
 
     public Stack reverseStack(Stack s)
