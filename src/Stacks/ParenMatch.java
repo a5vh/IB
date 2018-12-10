@@ -20,19 +20,26 @@ public class ParenMatch
         {
             if (letters[i].equalsIgnoreCase("("))
             {
-                s.push(i);
+                s.push(letters[i]);
             }
 
             if (letters[i].equalsIgnoreCase(")"))
             {
-                s.push(i);
+                s.push(letters[i]);
             }
         }
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < s.size(); i++)
         {
             System.out.print(s.get(i));
         }
+
+        if (s.size() == 2)
+        {
+            System.out.println("\nParentheses match.");
+        }
+
+        else System.out.println("\nParentheses don't match or dont exist.");
 
 
 

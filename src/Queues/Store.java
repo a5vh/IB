@@ -1,20 +1,19 @@
 package Queues;
 
+import javafx.scene.control.Tab;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
+import java.awt.*;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
 import java.util.Comparator;
 
-public class Store extends JFrame {
-
-    public Store(String title)
-    {
-        super(title);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(400,400);
-        this.setVisible(true);
-    }
+public class Store {
 
     public static void main (String [] args)
     {
@@ -30,13 +29,6 @@ public class Store extends JFrame {
         CheckoutLine checkout = new CheckoutLine(checkoutLine, shoppingCart);
         NumberFormat formatter = new DecimalFormat("$#0.00");
 
-        Store store = new Store("GUI");
-        JPanel panel = new JPanel();
-        JTable table = new JTable();
-
-        panel.add(table);
-
-        store.add(panel);
 /**
         while (cont.equalsIgnoreCase("y"))
         {)
@@ -94,6 +86,29 @@ public class Store extends JFrame {
         checkout.bagItems();
 
         System.out.println("\n" + formatter.format(total));
+
+        JFrame frame = new JFrame();
+        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        DefaultTableModel model = new DefaultTableModel(0, 3);
+        JTable table = new JTable(model);
+        JScrollPane scroll = new JScrollPane(table);
+
+        panel.add(table);
+
+        JTableHeader th = table.getTableHeader();
+        TableColumnModel tcm = th.getColumnModel();
+
+        TableColumn tc0 = tcm.getColumn(0);
+        TableColumn tc1 = tcm.getColumn(1);
+        TableColumn tc2 = tcm.getColumn(2);
+
+        tc0.setHeaderValue("Name of Item");
+        tc1.setHeaderValue("Price");
+        tc2.setHeaderValue("Size");
+
+        
+
+
 
 
     }
