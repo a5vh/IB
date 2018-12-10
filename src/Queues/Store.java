@@ -106,7 +106,7 @@ public class Store {
         tc1.setHeaderValue("Price");
         tc2.setHeaderValue("Size");
 
-        
+
 
 
 
