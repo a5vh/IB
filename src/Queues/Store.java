@@ -17,6 +17,23 @@ public class Store {
 
     public static void main (String [] args)
     {
+        JFrame frame = new JFrame();
+        DefaultTableModel model = new DefaultTableModel(0, 3);
+        JTable table = new JTable(model);
+
+        JTableHeader th = table.getTableHeader();
+        TableColumnModel tcm = th.getColumnModel();
+
+        TableColumn tc0 = tcm.getColumn(0);
+        TableColumn tc1 = tcm.getColumn(1);
+        TableColumn tc2 = tcm.getColumn(2);
+
+        tc0.setHeaderValue("Name of Item");
+        tc1.setHeaderValue("Price");
+        tc2.setHeaderValue("Size");
+
+        JButton button = new JButton("Click here");
+
 
         Queue<Item> checkoutLine = new LinkedList<>();
         Stack shoppingCart = new Stack();
@@ -29,26 +46,6 @@ public class Store {
         CheckoutLine checkout = new CheckoutLine(checkoutLine, shoppingCart);
         NumberFormat formatter = new DecimalFormat("$#0.00");
 
-/**
-        while (cont.equalsIgnoreCase("y"))
-        {)
-            System.out.println("Enter the item name from the shelf.");
-            String itemName = scan.nextLine();
-
-            System.out.println("Enter the price of " + itemName + " (round to the nearest # if a decimal.");
-            double price = scan.nextDouble();
-
-            System.out.println("Is the item small, medium or large?");
-            String size = scan.nextLine();
-
-            cart.addToCart(itemName, price, size);
-
-            System.out.println("Any more items? (y/n)");
-            cont = scan.next();
-
-            cart.printCart();
-        }
-**/
         System.out.println(shoppingCart.size());
 
         cart.addToCart("Peaches", 2, "small");
@@ -56,7 +53,17 @@ public class Store {
         cart.addToCart("Dogfood", 21, "large");
         cart.addToCart("Milk", 6, "medium");
 
-        cart.printCart();
+        String[] jlist = new String[shoppingCart.size()];
+        for (int i = 0; i < shoppingCart.size(); i++)
+        {
+            jlist[i] = shoppingCart.get(i).;
+        }
+
+        JList list = new JList(jlist);
+        list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        list.setLayoutOrientation(JList.VERTICAL);
+        list.setVisibleRowCount(-1);
+
 
         checkout.stackToQueue(shoppingCart);
 
@@ -87,27 +94,17 @@ public class Store {
 
         System.out.println("\n" + formatter.format(total));
 
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        DefaultTableModel model = new DefaultTableModel(0, 3);
-        JTable table = new JTable(model);
-        JScrollPane scroll = new JScrollPane(table);
+        frame.add(new JScrollPane(table));
+        frame.add(new JScrollPane(list));
 
-        panel.add(table);
+        frame.setSize(400,500);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
-        JTableHeader th = table.getTableHeader();
-        TableColumnModel tcm = th.getColumnModel();
-
-        TableColumn tc0 = tcm.getColumn(0);
-        TableColumn tc1 = tcm.getColumn(1);
-        TableColumn tc2 = tcm.getColumn(2);
-
-        tc0.setHeaderValue("Name of Item");
-        tc1.setHeaderValue("Price");
-        tc2.setHeaderValue("Size");
-
-
-
+        String name = JOptionPane.showInputDialog(frame, "What's the name of the item?");
+        String price = JOptionPane.showInputDialog(frame, "What's the price of " + name + "?");
+        String size = JOptionPane.showInputDialog(frame, "What is the size of " + name + "?");
 
 
 
