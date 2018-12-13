@@ -96,7 +96,7 @@ public class CheckoutLine {
         System.out.println("============\t\t======");
         for(int l = 0; l < large.size(); l++)
         {
-            System.out.println(large.get(l).getItemName() + "\t\t" + large.get(l).getPrice());
+            System.out.println(large.get(l).getItemName() + "\t\t" + formatter.format(large.get(l).getPrice()));
         }
         System.out.println("\n");
 
@@ -104,7 +104,7 @@ public class CheckoutLine {
         System.out.println("============\t======");
         for(int l = 0; l < medium.size(); l++)
         {
-            System.out.println(medium.get(l).getItemName() + "\t" + medium.get(l).getPrice());
+            System.out.println(medium.get(l).getItemName() + "\t" + formatter.format(medium.get(l).getPrice()));
         }
         System.out.println("\n");
 
@@ -113,7 +113,7 @@ public class CheckoutLine {
         System.out.println("============ \t======");
         for(int l = 0; l < small.size(); l++)
         {
-            System.out.println(small.get(l).getItemName() + "\t" + small.get(l).getPrice());
+            System.out.println(small.get(l).getItemName() + "\t" + formatter.format(small.get(l).getPrice()));
         }
         System.out.println("\n");
     }

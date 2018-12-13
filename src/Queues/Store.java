@@ -8,6 +8,7 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.*;
@@ -17,7 +18,7 @@ public class Store {
 
     public static void main (String [] args)
     {
-        JFrame frame = new JFrame();
+        JFrame shoppingCartList = new JFrame("Shopping Cart");
         DefaultTableModel model = new DefaultTableModel(0, 3);
         JTable table = new JTable(model);
 
@@ -32,14 +33,9 @@ public class Store {
         tc1.setHeaderValue("Price");
         tc2.setHeaderValue("Size");
 
-        JButton button = new JButton("Click here");
-
-
         Queue<Item> checkoutLine = new LinkedList<>();
         Stack shoppingCart = new Stack();
 
-        Scanner scan = new Scanner(System.in);
-        String cont = "y";
         double total = 0.00;
 
         ShoppingCart cart = new ShoppingCart(shoppingCart);
@@ -53,10 +49,10 @@ public class Store {
         cart.addToCart("Dogfood", 21, "large");
         cart.addToCart("Milk", 6, "medium");
 
-        String[] jlist = new String[shoppingCart.size()];
+        Object[] jlist = new Object[shoppingCart.size()];
         for (int i = 0; i < shoppingCart.size(); i++)
         {
-            jlist[i] = shoppingCart.get(i).;
+            jlist[i] = shoppingCart.get(i);
         }
 
         JList list = new JList(jlist);
@@ -67,11 +63,11 @@ public class Store {
 
         checkout.stackToQueue(shoppingCart);
 
-        System.out.println("Items transferred to conveyor belt \nfor scanning and bagging.");
+        JOptionPane.showMessageDialog(shoppingCartList, "Items transferred to conveyor belt \nfor scanning and bagging.");
 
         ((LinkedList<Item>) checkoutLine).sort(Comparator.comparing(Item::getSize));
 
-        checkout.printCheckout();
+
 
         for (int i = 0; i < checkoutLine.size(); i++)
         {
@@ -90,21 +86,27 @@ public class Store {
 
         System.out.println("\n");
 
+        checkout.printCheckout();
+
         checkout.bagItems();
 
         System.out.println("\n" + formatter.format(total));
 
-        frame.add(new JScrollPane(table));
-        frame.add(new JScrollPane(list));
+        shoppingCartList.add(new JScrollPane(table));
 
-        frame.setSize(400,500);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+        JScrollPane listScroller = new JScrollPane(list);
+        listScroller.setPreferredSize(new Dimension(250, 80));
+        shoppingCartList.add(new JScrollPane(list));
 
-        String name = JOptionPane.showInputDialog(frame, "What's the name of the item?");
-        String price = JOptionPane.showInputDialog(frame, "What's the price of " + name + "?");
-        String size = JOptionPane.showInputDialog(frame, "What is the size of " + name + "?");
+        shoppingCartList.setSize(400,500);
+        shoppingCartList.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        shoppingCartList.setVisible(true);
+
+
+
+        //String name = JOptionPane.showInputDialog(frame, "What's the name of the item?");
+        //String price = JOptionPane.showInputDialog(frame, "What's the price of " + name + "?");
+        //String size = JOptionPane.showInputDialog(frame, "What is the size of " + name + "?");
 
 
 
