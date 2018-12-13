@@ -1,66 +1,48 @@
 package Trees;
 import javax.swing.*;
 import javax.swing.border.Border;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.awt.*;
 
-public class IntList extends JFrame {
+public class IntList {
 
-    JPanel flow1panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-    JPanel flow2panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+    JFrame frame;
+    static ArrayList<String> arrayList;
 
-    JPanel gridPanel = new JPanel(new GridLayout(2, 1));
-
-    JTextField rootText = new JTextField(8);
-    JLabel rootLabel = new JLabel("Root Number");
-
-    Node root;
-
-    public IntList()
+    IntList(ArrayList<String> arrayList)
     {
-        init();
-        String root = rootText.getText();
-        int rootNum = Integer.parseInt(root);
+        this.arrayList = arrayList;
+        frame = new JFrame("Int List");
+        JList list = new JList((ListModel) arrayList);
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(list);
+        frame.setSize(500, 600);
     }
 
-    public static void swap(int[] array, int i, int j)
+    public String[] refreshArray(ArrayList<String> list)
     {
-        int tmp = array[i];
-        array[i] = array[j];
-        array[j] = tmp;
+       String[] array = new String[list.size()];
+
+       for (int i = 0; i < list.size(); i++)
+       {
+           array[i] = list.get(i);
+       }
+
+       return array;
     }
 
-    public static void main(String[] args) {
-
-        Scanner scan = new Scanner(System.in);
-
-        IntList intObj = new IntList();
-
-
-
-        intObj.setTitle("List of Integers");
-        intObj.setSize(700, 400);
-        intObj.setVisible(true);
-    }
-
-    public void init()
+    public static void main (String[] args)
     {
+        NodeInt head = new NodeInt(1);
+
+        IntList intList = new IntList(arrayList);
+
+        head.insert(7);
+        head.insert(4);
+
 
     }
-
-    public void add(Node obj)
-    {
-        String newNumber = JOptionPane.showInputDialog("Enter the next number in\nthe tree.");
-        int number = Integer.parseInt(newNumber);
-
-        obj.insert(number);
-    }
-
-    public void setRoot(Node obj)
-    {
-        rootText.getText();
-
-    }
-
 
 }

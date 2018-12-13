@@ -19,6 +19,14 @@ public class Solution {
     }
 
     public static void main(String [] args) {
+
+        Node head = new Node(1);
+
+        head.insert(3);
+        head.insert(4);
+        head.insert(2);
+
+        head.printPreOrder();
     }
 }
 
