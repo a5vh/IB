@@ -8,39 +8,50 @@ import java.awt.*;
 public class IntList {
 
     JFrame frame;
-    static ArrayList<String> arrayList;
 
-    IntList(ArrayList<String> arrayList)
+    IntList()
     {
-        this.arrayList = arrayList;
         frame = new JFrame("Int List");
-        JList list = new JList((ListModel) arrayList);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(list);
-        frame.setSize(500, 600);
+
+        frame.setSize(250, 150);
+        frame.setVisible(true);
     }
 
-    public String[] refreshArray(ArrayList<String> list)
-    {
-       String[] array = new String[list.size()];
+    public static void main (String[] args) {
+        NodeInt head = new NodeInt("3");
+        ArrayList<String> arrayList = new ArrayList<>();
 
-       for (int i = 0; i < list.size(); i++)
-       {
-           array[i] = list.get(i);
-       }
+        IntList intList = new IntList();
 
-       return array;
-    }
+        String stringTimes = JOptionPane.showInputDialog("How many integers would you likes\n to enter?");
+        int intTimes = Integer.parseInt(stringTimes);
 
-    public static void main (String[] args)
-    {
-        NodeInt head = new NodeInt(1);
+        for (int i = 0; i == intTimes; i++)
+        {
+            String integer = JOptionPane.showInputDialog("What is your integer?");
+            int number = Integer.parseInt(integer);
 
-        IntList intList = new IntList(arrayList);
+        }
 
-        head.insert(7);
-        head.insert(4);
+        head.printInOrder(arrayList);
+
+        DefaultListModel dm = new DefaultListModel();
+        for (String i : arrayList)
+        {
+            dm.addElement(i);
+        }
+
+        JList list = new JList();
+        list.setModel(dm);
+        intList.frame.add(list);
+        list.updateUI();
+
+        for(int i = 0; i < arrayList.size(); i++)
+        {
+            System.out.println(arrayList.get(i));
+        }
 
 
     }

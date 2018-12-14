@@ -1,26 +1,28 @@
 package Trees;
 
+import java.util.ArrayList;
+
 public class NodeInt {
 
-    Node left, right;
-    int data;
+    NodeInt left, right;
+    String data;
 
-    public NodeInt(int data)
+    public NodeInt(String data)
     {
         this.data = data;
     }
 
-    public void insert(int value)
+    public void insert(String value)
     {
-        if (value <= data) {
+        if (Integer.parseInt(value) <= Integer.parseInt(data)) {
             if (left == null) {
-                left = new Node(value);
+                left = new NodeInt(value);
             } else {
                 left.insert(value);
             }
         } else {
             if (right == null) {
-                right = new Node(value);
+                right = new NodeInt(value);
             } else {
                 right.insert(value);
             }
@@ -29,9 +31,9 @@ public class NodeInt {
 
     public boolean contains (int value)
     {
-        if (value == data) {
+        if (value == Integer.parseInt(data)) {
             return true;
-        } else if (value < data) {
+        } else if (value < Integer.parseInt(data)) {
             if (left == null) {
                 return false;
             } else {
@@ -46,16 +48,16 @@ public class NodeInt {
         }
     }
 
-    public void printInOrder()
+    public void printInOrder(ArrayList<String> arrayList)
     {
         if (left != null) {
-            left.printInOrder();
+            left.printInOrder(arrayList);
         }
 
-        System.out.println(data);
+        arrayList.add(data);
 
         if (right != null) {
-            right.printInOrder();
+            right.printInOrder(arrayList);
         }
     }
 
