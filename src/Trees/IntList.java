@@ -15,27 +15,29 @@ public class IntList {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.setSize(250, 150);
+        frame.setSize(300, 300);
         frame.setVisible(true);
     }
 
     public static void main (String[] args) {
-        NodeInt head = new NodeInt("3");
+
+        String root = JOptionPane.showInputDialog("What is your root number?");
+        NodeInt head = new NodeInt(root);
         ArrayList<String> arrayList = new ArrayList<>();
 
         IntList intList = new IntList();
 
-        String stringTimes = JOptionPane.showInputDialog("How many integers would you likes\n to enter?");
+        String stringTimes = JOptionPane.showInputDialog("How many integers would you like\n to enter?");
         int intTimes = Integer.parseInt(stringTimes);
 
-        for (int i = 0; i == intTimes; i++)
-        {
-            String integer = JOptionPane.showInputDialog("What is your integer?");
-            int number = Integer.parseInt(integer);
 
+        for (int i = 0; i < intTimes; i++) {
+            String integer = JOptionPane.showInputDialog("What is your integer?");
+            head.insert(integer);
         }
 
         head.printInOrder(arrayList);
+        System.out.println(head.contains("5"));
 
         DefaultListModel dm = new DefaultListModel();
         for (String i : arrayList)
@@ -44,9 +46,27 @@ public class IntList {
         }
 
         JList list = new JList();
+        JPanel panel = new JPanel();
+        JButton add = new JButton("Add");
+        add.setSize(5, 5);
+
+        Dimension d = new Dimension(10, 10);
+        add.setPreferredSize(d);
+
+        GridLayout gridLayout = new GridLayout(2, 1);
+
+        panel.setLayout(gridLayout);
+
         list.setModel(dm);
-        intList.frame.add(list);
+
+        panel.add(list);
+        panel.add(add);
+
+        intList.frame.add(panel);
+
         list.updateUI();
+        intList.frame.pack();
+        intList.frame.setSize(300, 300);
 
         for(int i = 0; i < arrayList.size(); i++)
         {

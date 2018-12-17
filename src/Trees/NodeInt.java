@@ -1,5 +1,7 @@
 package Trees;
 
+import GUI.Trees;
+
 import java.util.ArrayList;
 
 public class NodeInt {
@@ -29,11 +31,11 @@ public class NodeInt {
         }
     }
 
-    public boolean contains (int value)
+    public boolean contains (String value)
     {
-        if (value == Integer.parseInt(data)) {
+        if (Integer.parseInt(value) == Integer.parseInt(data)) {
             return true;
-        } else if (value < Integer.parseInt(data)) {
+        } else if (Integer.parseInt(value) < Integer.parseInt(data)) {
             if (left == null) {
                 return false;
             } else {
@@ -46,6 +48,14 @@ public class NodeInt {
                 return right.contains(value);
             }
         }
+    }
+
+    public void printPostorder(NodeInt node)
+    {
+        if (node == null)
+            return;
+
+        printPostOrder();
     }
 
     public void printInOrder(ArrayList<String> arrayList)
@@ -61,16 +71,16 @@ public class NodeInt {
         }
     }
 
-    public void printPreOrder()
+    public void printPreOrder(ArrayList<String> arrayList)
     {
-        System.out.println(data);
+        arrayList.add(data);
 
         if (left != null) {
-            left.printPreOrder();
+            left.printPreOrder(arrayList);
         }
 
         if (right != null) {
-            right.printPreOrder();
+            right.printPreOrder(arrayList);
         }
     }
 
