@@ -64,6 +64,7 @@ public class IntList {
         list.updateUI();
         intList.frame.pack();
         intList.frame.setSize(300, 300);
+        intList.frame.setVisible(true);
 
         for(int i = 0; i < arrayList.size(); i++)
         {

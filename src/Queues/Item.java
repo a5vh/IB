@@ -3,12 +3,12 @@ package Queues;
 public class Item {
 
     Item next;
-    double price;
+    String price;
     String itemName;
     int quantity;
     String size;
 
-    public Item(double price, String itemName, String size)
+    public Item(String price, String itemName, String size)
     {
         this.price = price;
         this.itemName = itemName;
@@ -18,7 +18,7 @@ public class Item {
     public Item()
     {}
 
-    public double getPrice()
+    public String getPrice()
     {
         return price;
     }
